@@ -14,10 +14,19 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="Task 1 推荐系统概述1. 简介用户：帮助用户快速发现有用信息，以用户的历史信息推断其可能感兴趣的内容。 公司：帮助公司增加产品被用户购买的概率，达到公司目标连续增长的目的。 本质：实现将用户-商品-公司之间利益最大化 2. 常用评测指标2.1 用户满意度直接决定推荐系统的好坏，只能在线计算，通过用户调查或者在线实验获得。 2.2 预测准确度最重要的离线评价指标，可度量用户的实际行为与推荐系统">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/RMSE.png">
+<meta property="og:image" content="http://example.com/MAE.png">
+<meta property="og:image" content="http://example.com/Pre.png">
+<meta property="og:image" content="http://example.com/recall.png">
+<meta property="og:image" content="http://example.com/%E4%BF%A1%E6%81%AF%E7%86%B5.png">
+<meta property="og:image" content="http://example.com/%E5%9F%BA%E5%B0%BC%E7%B3%BB%E6%95%B0.png">
+<meta property="og:image" content="http://example.com/%E5%A4%9A%E6%A0%B7%E6%80%A7.png">
+<meta property="og:image" content="http://example.com/%E5%B9%B3%E5%9D%87%E5%A4%9A%E6%A0%B7%E6%80%A7.png">
 <meta property="article:published_time" content="2020-10-19T10:34:36.203Z">
-<meta property="article:modified_time" content="2020-10-19T11:40:23.316Z">
+<meta property="article:modified_time" content="2020-10-19T11:53:05.059Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/RMSE.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -85,16 +94,16 @@
 <h3 id="2-2-预测准确度"><a href="#2-2-预测准确度" class="headerlink" title="2.2 预测准确度"></a>2.2 预测准确度</h3><p>最重要的离线评价指标，可度量用户的实际行为与推荐系统预测结果的准确度。</p>
 <p><strong>1. 评分指标</strong></p>
 <p>预测用户对物品的评分，评分预测模型对用户的历史物品评分记录进行建模，得到用户的兴趣模型，用该模型预测用户未见过商品的评分。预测准确度由均方根误差（RMSE）与平均绝对误差（MAE）计算。公式为：</p>
-<p>![RMSE](Task 1 推荐系统概述.assets/RMSE.png)</p>
-<p>![](Task 1 推荐系统概述.assets/MAE.png)</p>
+<p><img src="/RMSE.png" alt="RMSE"></p>
+<p><img src="/MAE.png" alt="MAE"></p>
 <p>RMSE存在平方根，对系统要求更加的苛刻。</p>
 <p><strong>2. TopN 推荐</strong></p>
 <p>定义：给用户一个列表的推荐物品</p>
 <p>预测准确率指标：精确率（precision）与召回率（recall），另R(u)为推荐列表，T(u)为用户实际行为列表。</p>
 <p><strong>a. 精确率：</strong>分类正确的正样本个数占分类器判定为正样本的个数</p>
-<p>![Pre](Task 1 推荐系统概述.assets/Pre.png)</p>
+<p><img src="/Pre.png" alt="Pre"></p>
 <p><strong>b. 召回率：</strong>分类正确的正样本个数占真正正样本的个数</p>
-<p>![recall](Task 1 推荐系统概述.assets/recall.png)</p>
+<p><img src="/recall.png" alt="recall"></p>
 <p><strong>3. 覆盖率</strong></p>
 <p>描述对物品长尾的发掘能力</p>
 <p><strong>定义：</strong>推荐出的物品的集合数占总商品集合数的比例</p>
@@ -103,14 +112,14 @@
 <p>分布较陡 —&gt; 覆盖率较低</p>
 <p>评价指标：信息熵 and 基尼系数</p>
 <p><strong>信息熵：</strong>其中 p(i) 是物品 i 的流行度除以所有物品流行度之和</p>
-<p>![信息熵](Task 1 推荐系统概述.assets/信息熵.png)</p>
+<p><img src="/%E4%BF%A1%E6%81%AF%E7%86%B5.png" alt="信息熵"></p>
 <p><strong>基尼系数：</strong>其中 ij 是按照物品流行度 p 从小到大排序的物品列表中第 j 个物品</p>
-<p>![基尼系数](Task 1 推荐系统概述.assets/基尼系数-1603105441146.png)</p>
+<p><img src="/%E5%9F%BA%E5%B0%BC%E7%B3%BB%E6%95%B0.png" alt="基尼系数"></p>
 <p><strong>4. 多样性</strong></p>
 <p>度量推荐列表中物品的不相似性。令函数 s(i,j) 为物品 i 和物品 j 的相似性,那么用户推荐列表的多样性可以定义为:</p>
-<p>![多样性](Task 1 推荐系统概述.assets/多样性-1603105614175.png)</p>
+<p><img src="/%E5%A4%9A%E6%A0%B7%E6%80%A7.png" alt="多样性"></p>
 <p>推荐系统的整体多样性可以定义为所有用户推荐列表多样性的平均值：</p>
-<p>![平均多样性](Task 1 推荐系统概述.assets/平均多样性.png)</p>
+<p><img src="/%E5%B9%B3%E5%9D%87%E5%A4%9A%E6%A0%B7%E6%80%A7.png" alt="平均多样性"></p>
 <p><strong>5. 新颖性</strong></p>
 <p>推荐系统中物品的平均热门程度较低。</p>
 <p><strong>6. AUC曲线</strong></p>
