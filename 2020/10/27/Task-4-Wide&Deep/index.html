@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Task 4 Wide&amp;Deep | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1 点击率预估简介解决什么问题：对每次广告的点击情况做出预测 模型：二分类模型，可用逻辑回归作为模型的输出，输出为一个概率值 与推荐算法的不同： 广告点击率预估：由某个用户对某个广告的点击率 w&#x2F; 广告的出价用于排序 推荐算法：只需得到一个最优的推荐次序 2 FM为什么不好当query-item矩阵是稀疏并且是high-rank的时候，结果较差，会推荐一些不那么相关的物品。 简单的linear m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Task 4 Wide&amp;Deep">
+<meta property="og:url" content="http://example.com/2020/10/27/Task-4-Wide&Deep/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1 点击率预估简介解决什么问题：对每次广告的点击情况做出预测 模型：二分类模型，可用逻辑回归作为模型的输出，输出为一个概率值 与推荐算法的不同： 广告点击率预估：由某个用户对某个广告的点击率 w&#x2F; 广告的出价用于排序 推荐算法：只需得到一个最优的推荐次序 2 FM为什么不好当query-item矩阵是稀疏并且是high-rank的时候，结果较差，会推荐一些不那么相关的物品。 简单的linear m">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-10-27T02:53:54.985Z">
+<meta property="article:modified_time" content="2020-10-27T03:26:33.591Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Task-4-Wide&amp;Deep" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/27/Task-4-Wide&Deep/" class="article-date">
+  <time datetime="2020-10-27T02:53:54.985Z" itemprop="datePublished">2020-10-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Task 4 Wide&amp;Deep
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-点击率预估简介"><a href="#1-点击率预估简介" class="headerlink" title="1 点击率预估简介"></a>1 点击率预估简介</h2><p>解决什么问题：对每次广告的点击情况做出预测</p>
+<p>模型：二分类模型，可用逻辑回归作为模型的输出，输出为一个概率值</p>
+<p>与推荐算法的不同：</p>
+<p><em>广告点击率预估：</em>由某个用户对某个广告的点击率 w/ 广告的出价用于排序</p>
+<p><em>推荐算法：</em>只需得到一个最优的推荐次序</p>
+<h2 id="2-FM为什么不好"><a href="#2-FM为什么不好" class="headerlink" title="2 FM为什么不好"></a>2 FM为什么不好</h2><p>当query-item矩阵是稀疏并且是high-rank的时候，结果较差，会推荐一些不那么相关的物品。</p>
+<p>简单的linear model可以通过cross-product transformation来记住这些exception rules。</p>
+<h2 id="3-Wide-amp-Deep模型的“记忆能力”与“泛化能力”"><a href="#3-Wide-amp-Deep模型的“记忆能力”与“泛化能力”" class="headerlink" title="3 Wide&amp;Deep模型的“记忆能力”与“泛化能力”"></a>3 Wide&amp;Deep模型的“记忆能力”与“泛化能力”</h2><p><em>Memorization &amp; Generalization</em></p>
+<p><strong>Memorization：</strong>通过用户与商品的交互信息矩阵学习规则（协同过滤、SVD。。。；更加保守，推荐用户之前有过行为的items，线性模型）</p>
+<p><strong>Generalization：</strong>泛化规则（FM。。；提高推荐系统的多样性，DNN）</p>
+<p><em>Wide&amp;Deep：</em>融合这两种推荐结果做出最终推荐（Wide：线性模型；Deep：DNN）</p>
+<p>Wide部分可以增强模型的记忆能力，Deep部分有利于增强模型的泛化能力。</p>
+<ol>
+<li>wide部分：广义的线性模型，输入分为两部分（1）原始的部分特征；（2）原始特征的交互特征（<em>两个特征同时为1，新特征才为1</em>）。wide部分模型训练完之后留下来的特征都是非常重要的。</li>
+<li>Deep部分：DNN模，输入特征分为（1）数值特征，可直接输入；（2）类别特征（需要经过Embedding）。层数越多，中间特征越抽象，提高了模型的泛化能力。</li>
+</ol>
+<p><strong>Wide部分与Deep部分结合：</strong>将两部分的输出重新使用一个逻辑回归模型做最终的预测，输出概率值。</p>
+<h2 id="4-操作流程"><a href="#4-操作流程" class="headerlink" title="4 操作流程"></a>4 操作流程</h2><ol>
+<li><p>Retrieval：获得最终推荐列表的候选集</p>
+</li>
+<li><p>Ranking：</p>
+<p>a. 搜集更细致的用户特征</p>
+<p>b. 将特征分别传入Wide&amp;Deep一起做训练</p>
+<p>c. 训练完成后推荐TopN</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/10/27/Task-4-Wide&Deep/" data-id="ckgretg4e0000f4um3tcjf4a9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/10/23/Task-3-%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3-and-FM/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Task 3 矩阵分解 and FM</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/10/27/Task-4-Wide&Deep/">Task 4 Wide&amp;Deep</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/23/Task-3-%E7%9F%A9%E9%98%B5%E5%88%86%E8%A7%A3-and-FM/">Task 3 矩阵分解 and FM</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/20/Task%202%20%E5%8D%8F%E5%90%8C%E8%BF%87%E6%BB%A4/">Task 2 协同过滤</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/19/Task%201%20%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/">Task 1 推荐系统概述</a>
+          </li>
+        
+          <li>
+            <a href="/2020/10/16/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
