@@ -64,6 +64,69 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Task-5-GBDT+LR" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/29/Task-5-GBDT+LR/" class="article-date">
+  <time datetime="2020-10-29T09:39:44.415Z" itemprop="datePublished">2020-10-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/29/Task-5-GBDT+LR/">Task 5 GBDT+LR</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-GBDT-LR简介"><a href="#1-GBDT-LR简介" class="headerlink" title="1 GBDT+LR简介"></a>1 GBDT+LR简介</h2><p>协同过滤与矩阵分解的劣势：仅利用了用户与物品相互行为信息进行推荐，<strong>忽视</strong>了用户自身特征，物品自身特征以及上下文信息等，结果较为片面。</p>
+<p>GBDT+LR：利用GBDT自动进行特征筛选和组合，进而生成新的离散特征向量，该项量作为LR的输入，来产生最后的预测结果。</p>
+<h2 id="2-逻辑回归模型（LR）"><a href="#2-逻辑回归模型（LR）" class="headerlink" title="2 逻辑回归模型（LR）"></a>2 逻辑回归模型（LR）</h2><p><em>能够综合利用用户、物品、上下文等多种不同的特征生成较为 “全面 ”的推荐结果。</em></p>
+<p>在线性回归的基础上加了一个Sigmoid函数（非线性）， <strong>逻辑回归假设数据服从伯努利分布，通过极大似然函数的方法，运用梯度下降来求解参数，来达到将数据二分类的目的。</strong></p>
+<p>逻辑回归模型将推荐问题转化成了一个点击率预估问题（CTR）</p>
+<h4 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h4><ol>
+<li>模型简单，可解释性好；</li>
+<li>训练时便于并行化，适合处理海量id类特征，防止信息损失；</li>
+<li>资源占用少；</li>
+<li>方便输出结果调整。</li>
+</ol>
+<h4 id="局限性："><a href="#局限性：" class="headerlink" title="局限性："></a>局限性：</h4><ol>
+<li>表达能力不强；</li>
+<li>准确率并不是很高；</li>
+<li>处理非线性数据较麻烦；</li>
+<li>需要进行人工特征组合。</li>
+</ol>
+<p><strong><em>需要找到一个可以自动发现有效特征、特征组合，弥补人工经验不足，缩短LR特征试验周期的模型——GBDT</em></strong></p>
+<h2 id="3-GBDT模型（梯度提升决策树）"><a href="#3-GBDT模型（梯度提升决策树）" class="headerlink" title="3 GBDT模型（梯度提升决策树）"></a>3 GBDT模型（梯度提升决策树）</h2><p><em>在传统机器学习中，对真实分布拟合的最好的集中算法之一</em>。</p>
+<p>收到关注的理由：</p>
+<ol>
+<li>效果不错；</li>
+<li>既可以用于回归，也可用于分类；</li>
+<li>可以筛选特征。</li>
+</ol>
+<p>GBDT每轮迭代会产生一个弱分类器，其对弱分类器的要求足够简单，低方差高偏差，最终的分类器是将每轮训练得到的弱分类器加权求和得到的。</p>
+<p>GBDT每轮的训练是在上一轮的训练的残差的基础之上进行的，一直使用的是CART回归树。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/10/29/Task-5-GBDT+LR/" data-id="ckguo32ya0000moumbl14aym4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Task-4-Wide&amp;Deep" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/10/27/Task-4-Wide&Deep/" class="article-date">
@@ -467,6 +530,10 @@
       <ul>
         
           <li>
+            <a href="/2020/10/29/Task-5-GBDT+LR/">Task 5 GBDT+LR</a>
+          </li>
+        
+          <li>
             <a href="/2020/10/27/Task-4-Wide&Deep/">Task 4 Wide&amp;Deep</a>
           </li>
         
@@ -480,10 +547,6 @@
         
           <li>
             <a href="/2020/10/19/Task%201%20%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/">Task 1 推荐系统概述</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/16/hello-world/">Hello World</a>
           </li>
         
       </ul>
